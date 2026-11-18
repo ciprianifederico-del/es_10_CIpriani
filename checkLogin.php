@@ -5,9 +5,10 @@
     $password = "fede";
     $errore = "";
 
-    
+
     if (isset($_POST["nome"]) && isset($_POST["password"])) {
         if ($_POST["nome"] == $username && $_POST["password"] == $password) {
+            $_SESSION["nome"] = $_POST["nome"];
             header("Location: /prodotti.php");
             exit; 
         } else {
@@ -20,11 +21,15 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <title>Errore login</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
     <body>
-        <?php 
-            // Stampi il messaggio solo se non c'è stato alcun redirect
-            echo $errore; 
-        ?>
+        <div class="card">
+            <h3>Errore</h3>
+            <p class="messaggio"><?php echo $errore; ?></p>
+            <a class="link-footer" href="index.php">Torna al login</a>
+        </div>
     </body>
 </html>
